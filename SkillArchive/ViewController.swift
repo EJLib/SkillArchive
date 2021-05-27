@@ -7,6 +7,11 @@
 
 import UIKit
 
+//global variables
+var skills = [Skill]()
+
+
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {

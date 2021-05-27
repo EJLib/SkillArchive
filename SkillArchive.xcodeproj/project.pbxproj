@@ -16,6 +16,10 @@
 		3F76C4A02654443100D73430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F76C49E2654443100D73430 /* LaunchScreen.storyboard */; };
 		3F76C4AB2654443100D73430 /* SkillArchiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4AA2654443100D73430 /* SkillArchiveTests.swift */; };
 		3F76C4B62654443100D73430 /* SkillArchiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4B52654443100D73430 /* SkillArchiveUITests.swift */; };
+		3F76C4CA2656E17400D73430 /* SkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4C92656E17400D73430 /* SkillsViewController.swift */; };
+		3F76C4DD2656E81E00D73430 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4DC2656E81E00D73430 /* Skill.swift */; };
+		3F76C4E5265836D900D73430 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4E4265836D900D73430 /* SkillCell.swift */; };
+		3F76C4F0265C122300D73430 /* NewSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4EF265C122300D73430 /* NewSkillViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		3F76C4B12654443100D73430 /* SkillArchiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkillArchiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F76C4B52654443100D73430 /* SkillArchiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillArchiveUITests.swift; sourceTree = "<group>"; };
 		3F76C4B72654443100D73430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F76C4C92656E17400D73430 /* SkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewController.swift; sourceTree = "<group>"; };
+		3F76C4DC2656E81E00D73430 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		3F76C4E4265836D900D73430 /* SkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
+		3F76C4EF265C122300D73430 /* NewSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSkillViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +111,11 @@
 			children = (
 				3F76C4902654442B00D73430 /* AppDelegate.swift */,
 				3F76C4922654442B00D73430 /* SceneDelegate.swift */,
+				3F76C4DC2656E81E00D73430 /* Skill.swift */,
+				3F76C4E4265836D900D73430 /* SkillCell.swift */,
 				3F76C4942654442B00D73430 /* ViewController.swift */,
+				3F76C4C92656E17400D73430 /* SkillsViewController.swift */,
+				3F76C4EF265C122300D73430 /* NewSkillViewController.swift */,
 				3F76C4962654442B00D73430 /* Main.storyboard */,
 				3F76C49C2654443100D73430 /* Assets.xcassets */,
 				3F76C49E2654443100D73430 /* LaunchScreen.storyboard */,
@@ -263,8 +275,12 @@
 			files = (
 				3F76C4952654442B00D73430 /* ViewController.swift in Sources */,
 				3F76C4912654442B00D73430 /* AppDelegate.swift in Sources */,
+				3F76C4E5265836D900D73430 /* SkillCell.swift in Sources */,
 				3F76C49B2654442B00D73430 /* SkillArchive.xcdatamodeld in Sources */,
+				3F76C4CA2656E17400D73430 /* SkillsViewController.swift in Sources */,
 				3F76C4932654442B00D73430 /* SceneDelegate.swift in Sources */,
+				3F76C4DD2656E81E00D73430 /* Skill.swift in Sources */,
+				3F76C4F0265C122300D73430 /* NewSkillViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
