@@ -22,7 +22,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="vpj-9T-Po3" kind="presentation" id="nML-yz-wll"/>
+                                    <segue destination="u3G-oF-9me" kind="presentation" id="nML-yz-wll"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,13 +83,14 @@
                             <outlet property="delegate" destination="vpj-9T-Po3" id="j7J-2x-MyI"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="Xm3-CJ-Dgw"/>
                     <connections>
                         <segue destination="hWa-tL-GgU" kind="presentation" identifier="ViewToNewSkill" id="GMl-41-2YC"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPc-EA-nRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.6" y="54.422788605697157"/>
+            <point key="canvasLocation" x="1924" y="54.422788605697157"/>
         </scene>
         <!--New Skill View Controller-->
         <scene sceneID="Lmb-2U-k3f">
@@ -169,7 +170,7 @@
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="createNewSkill" destination="hWa-tL-GgU" eventType="touchUpInside" id="HOX-9p-P3L"/>
-                                    <segue destination="vpj-9T-Po3" kind="presentation" id="005-lK-35d"/>
+                                    <segue destination="u3G-oF-9me" kind="presentation" id="005-lK-35d"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -183,7 +184,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLu-SA-SnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861.5999999999999" y="-154.27286356821591"/>
+            <point key="canvasLocation" x="2800.8000000000002" y="-154.27286356821591"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="leZ-58-sh9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="u3G-oF-9me" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="phq-a1-anz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vpj-9T-Po3" kind="relationship" relationship="rootViewController" id="TN5-60-Y6u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wAY-m9-tOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="54.422788605697157"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
