@@ -7,20 +7,24 @@
 
 import UIKit
 
-var imageName: String = ""
+class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UITextFieldDelegate {
 
-class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
+    var imageName: String = ""
+    
     @IBOutlet var coverImage: UIImageView!
     @IBOutlet var titleTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        titleTextField.delegate = self
     }
     
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func importNew() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true

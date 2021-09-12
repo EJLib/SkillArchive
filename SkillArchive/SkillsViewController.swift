@@ -7,10 +7,10 @@
 
 import UIKit
 
-var i = 0
-
 class SkillsViewController: UICollectionViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
+    var i = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         i = 0
@@ -20,7 +20,7 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
     }
     
     @objc func segueToNewSkill() {
-        performSegue(withIdentifier: "ViewToNewSkill", sender: nil)
+        performSegue(withIdentifier: "SkillsToNewSkill", sender: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
