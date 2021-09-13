@@ -19,6 +19,13 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         
         titleTextField.delegate = self
         
+        if editSkill != -1 {
+            let path = getDocumentsDirectory().appendingPathComponent(skills[editSkill].image)
+            coverImage.image = UIImage(contentsOfFile: path.path)
+            titleTextField.text = skills[editSkill].title
+            imageName = skills[editSkill].image
+            //add videos and notes as I implement them
+        }
         
     }
     
@@ -53,8 +60,14 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
 
     @IBAction func createNewSkill() {
         //if statement to check for empty fields
-        let s = Skill(number: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
-        skills.append(s)
+        if editSkill == -1 {
+            let s = Skill(number: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
+            skills.append(s)
+        } else {
+            skills[editSkill].title = titleTextField.text!
+            skills[editSkill].image = imageName
+            editSkill = -1
+        }
     }
     
 }

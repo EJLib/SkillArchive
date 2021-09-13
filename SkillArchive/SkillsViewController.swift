@@ -20,7 +20,8 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SkillsToNewSkill", sender: indexPath[1])
+        editSkill = indexPath[1]
+        performSegue(withIdentifier: "SkillsToNewSkill", sender: nil)
         //indexPath seems to be [0, 0], [0, 1], etc. but not sure
     }
     
