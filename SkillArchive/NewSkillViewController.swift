@@ -18,6 +18,8 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         super.viewDidLoad()
         
         titleTextField.delegate = self
+        
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
