@@ -8,12 +8,11 @@
 import UIKit
 
 class SkillsViewController: UICollectionViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
+    
     var i = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        i = 0
         
        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToNewSkill))
         
