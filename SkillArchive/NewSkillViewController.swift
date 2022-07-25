@@ -7,6 +7,7 @@
 
 import UIKit
 
+// also used to edit existing skills
 class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UITextFieldDelegate {
 
     var imageName: String = ""
@@ -19,6 +20,8 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         
         titleTextField.delegate = self
         
+        // if editSkill is -1, it is a new skill
+        // this sets the fields to their existing values if editing existing skill
         if editSkill != -1 {
             let path = getDocumentsDirectory().appendingPathComponent(skills[editSkill].image)
             coverImage.image = UIImage(contentsOfFile: path.path)
@@ -59,13 +62,15 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     }
 
     @IBAction func createNewSkill() {
-        //if statement to check for empty fields
+        // if creating a new skill, add to skills list
         if editSkill == -1 {
             let s = Skill(number: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
             skills.append(s)
+        // if editing existing skills, make sure all fields are updated
         } else {
             skills[editSkill].title = titleTextField.text!
             skills[editSkill].image = imageName
+            //add videos and notes as I implement them
             editSkill = -1
         }
     }
