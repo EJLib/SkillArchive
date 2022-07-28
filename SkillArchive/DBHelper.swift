@@ -32,9 +32,18 @@ class DBHelper {
     
     func createTable() {
         // optional values could be a problem
-        let createTableString = "CREATE TABLE IF NOT EXISTS skill(Id INTEGER PRIMARY KEY,name TEXT,image TEXT,video TEXT,note TEXT"
+        let createTableString = "CREATE TABLE IF NOT EXISTS Skill(Id INTEGER PRIMARY KEY,Name TEXT,Image TEXT,Video TEXT,Note TEXT"
         var createTableStatement: OpaquePointer? = nil
-        // more
+        if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
+                print("Contact table created")
+            } else {
+                print("Contact table is not created")
+            }
+        } else {
+            print("CREATE TABLE statement is not prepared")
+        }
+        sqlite3_finalize(createTableStatement)
     }
     
 }
