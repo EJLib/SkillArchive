@@ -25,6 +25,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         // this sets the fields to their existing values if editing existing skill
         if editSkill != -1 {
             let path = getDocumentsDirectory().appendingPathComponent(skills[editSkill].image)
+            doneButton.isEnabled = true
             coverImage.image = UIImage(contentsOfFile: path.path)
             titleTextField.text = skills[editSkill].title
             imageName = skills[editSkill].image
@@ -36,7 +37,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         // doneButton is enabled only when a title is set
-        if textField.text != nil && textField.text != "" {
+        if textField.text != "" && textField.text != nil {
             doneButton.isEnabled = true
         } else {
             doneButton.isEnabled = false
