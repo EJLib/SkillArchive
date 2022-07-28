@@ -14,6 +14,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     
     @IBOutlet var coverImage: UIImageView!
     @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,12 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        // doneButton is enabled only when a title is set
+        if textField.text != nil && textField.text != "" {
+            doneButton.isEnabled = true
+        } else {
+            doneButton.isEnabled = false
+        }
         return true
     }
     
@@ -65,7 +72,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         // if creating a new skill, add to skills list
         if editSkill == -1 {
             let s = Skill(number: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
-            skills.append(s)
+                skills.append(s)
         // if editing existing skills, make sure all fields are updated
         } else {
             skills[editSkill].title = titleTextField.text!
