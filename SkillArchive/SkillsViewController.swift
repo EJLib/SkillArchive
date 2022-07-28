@@ -9,7 +9,8 @@ import UIKit
 
 class SkillsViewController: UICollectionViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    var i = 0
+    // used in collectionView to iterate through skill images and titles
+    var currentSkillIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +38,10 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
             fatalError("Unable to dequeue Skill.")
         }
         
-        let path = getDocumentsDirectory().appendingPathComponent(skills[i].image)
+        let path = getDocumentsDirectory().appendingPathComponent(skills[currentSkillIndex].image)
         cell.skillImage.image = UIImage(contentsOfFile: path.path)
-        cell.skillTitle.text = skills[i].title
-        i += 1
+        cell.skillTitle.text = skills[currentSkillIndex].title
+        currentSkillIndex += 1
         
         return cell
     }
