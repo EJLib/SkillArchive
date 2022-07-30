@@ -15,6 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Open database
+        let db: SQLiteDatabase
+        do {
+            db = try SQLiteDatabase.open(path: "")  // part2DbPath ?? ""
+            print("Successfully opened connection to database")
+        } catch SQLiteError.OpenDatabase(_) {
+            print("Unable to open database")
+        } catch {
+            print("other, shouldn't be needed")
+        }
+        
         return true
     }
 

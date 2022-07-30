@@ -21,6 +21,7 @@
 		3F76C4E5265836D900D73430 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4E4265836D900D73430 /* SkillCell.swift */; };
 		3F76C4F0265C122300D73430 /* NewSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76C4EF265C122300D73430 /* NewSkillViewController.swift */; };
 		67F928F6274AE707003EDFE6 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F928F5274AE707003EDFE6 /* DBHelper.swift */; };
+		926A17B92895D254000E6472 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A17B82895D254000E6472 /* SQLiteDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		3F76C4E4265836D900D73430 /* SkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
 		3F76C4EF265C122300D73430 /* NewSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSkillViewController.swift; sourceTree = "<group>"; };
 		67F928F5274AE707003EDFE6 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		926A17B82895D254000E6472 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				3F76C4A12654443100D73430 /* Info.plist */,
 				3F76C4992654442B00D73430 /* SkillArchive.xcdatamodeld */,
 				67F928F5274AE707003EDFE6 /* DBHelper.swift */,
+				926A17B82895D254000E6472 /* SQLiteDatabase.swift */,
 			);
 			path = SkillArchive;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				3F76C4912654442B00D73430 /* AppDelegate.swift in Sources */,
 				3F76C4E5265836D900D73430 /* SkillCell.swift in Sources */,
 				3F76C49B2654442B00D73430 /* SkillArchive.xcdatamodeld in Sources */,
+				926A17B92895D254000E6472 /* SQLiteDatabase.swift in Sources */,
 				67F928F6274AE707003EDFE6 /* DBHelper.swift in Sources */,
 				3F76C4CA2656E17400D73430 /* SkillsViewController.swift in Sources */,
 				3F76C4932654442B00D73430 /* SceneDelegate.swift in Sources */,
