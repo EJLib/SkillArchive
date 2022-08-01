@@ -24,6 +24,8 @@ class Skill: NSObject {
     }
 }
 
+/* function from https://www.hackingwithswift.com/read/10/4/importing-photos-with-uiimagepickercontroller
+*/
 func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]

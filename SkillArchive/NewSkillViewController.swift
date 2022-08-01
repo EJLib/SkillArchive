@@ -5,6 +5,11 @@
 //  Created by student on 5/24/21.
 //
 
+/*
+ some code copied from tutorial for importing photos
+ https://www.hackingwithswift.com/read/10/4/importing-photos-with-uiimagepickercontroller
+ */
+
 import UIKit
 
 // also used to edit existing skills
