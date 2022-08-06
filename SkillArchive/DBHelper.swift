@@ -4,7 +4,7 @@
 //
 //  Created by user928829 on 11/21/21.
 //
-
+/*
 /*
  All code from https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started
  */
@@ -76,3 +76,4 @@ class DBHelper {
 
 
 
+*/

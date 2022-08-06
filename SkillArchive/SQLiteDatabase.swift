@@ -57,3 +57,13 @@ class SQLiteDatabase {
     }
 }
 
+// why use an extension?
+extension SQLiteDatabase {
+    func prepareStatement(sql: String) throws -> OpaquePointer? {
+        var statement: OpaquePointer?
+        guard sqlite3_prepare_v2(dbPointer, sql, -1, &statement, nil) == SQLITE_OK else {
+            throw SQLiteError.Prepare(message: errorMessage)
+        }
+        return statement
+    }
+}
