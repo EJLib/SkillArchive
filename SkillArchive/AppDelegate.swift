@@ -21,10 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             db = try SQLiteDatabase.open(path: "")  // part2DbPath ?? ""
             print("Successfully opened connection to database")
+            try db.createTable(table: Skill.self)
+            print("Successfully created table")
         } catch SQLiteError.OpenDatabase(_) {
-            print("Unable to open database")
+            print("OpenDatabase error")
         } catch {
-            print("other, shouldn't be needed")
+            print("other error")
         }
         
         return true

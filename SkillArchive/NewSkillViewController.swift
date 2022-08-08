@@ -77,7 +77,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBAction func createNewSkill() {
         // if creating a new skill, add to skills list
         if editSkill == -1 {
-            let s = Skill(number: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
+            let s = Skill(id: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
                 skills.append(s)
         // if editing existing skills, make sure all fields are updated
         } else {

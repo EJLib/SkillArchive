@@ -47,7 +47,7 @@ class SQLiteDatabase {
         }
     }
     
-    fileprivate var errorMessage: String {
+    var errorMessage: String {
         if let errorPointer = sqlite3_errmsg(dbPointer) {
             let errorMessage = String(cString: errorPointer)
             return errorMessage
@@ -65,5 +65,31 @@ extension SQLiteDatabase {
             throw SQLiteError.Prepare(message: errorMessage)
         }
         return statement
+    }
+}
+
+// table creation
+protocol SQLTable {
+    static var createStatement: String { get }
+}
+
+extension Skill: SQLTable {
+    static var createStatement: String {
+        return """
+            CREATE TABLE Skill(Id INTEGER PRIMARY KEY,Title TEXT,Image TEXT,Video TEXT,Note TEXT);
+            """
+    }
+}
+
+extension SQLiteDatabase {
+    func createTable(table: SQLTable.Type) throws {
+        let createTableStatement = try prepareStatement(sql: table.createStatement)
+        defer {
+            sqlite3_finalize(createTableStatement)
+        }
+        guard sqlite3_step(createTableStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        print("\(table) table created")
     }
 }
