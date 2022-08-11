@@ -78,7 +78,9 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         // if creating a new skill, add to skills list
         if editSkill == -1 {
             let s = Skill(id: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
-                skills.append(s)
+            skills.append(s)
+            //insert new skill into database
+            do {try db!.insertSkill(skill: s)} catch {print("Insertion failed.")}
         // if editing existing skills, make sure all fields are updated
         } else {
             skills[editSkill].title = titleTextField.text!

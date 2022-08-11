@@ -17,18 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Open database
-        let db: SQLiteDatabase
         do {
             db = try SQLiteDatabase.open(path: "")  // part2DbPath ?? ""
             print("Successfully opened connection to database")
-            try db.createTable(table: Skill.self)
+            try db!.createTable(table: Skill.self)
             print("Successfully created table")
         } catch SQLiteError.OpenDatabase(_) {
             print("OpenDatabase error")
         } catch {
             print("other error")
         }
-        
         return true
     }
 

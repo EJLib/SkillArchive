@@ -57,7 +57,6 @@ class SQLiteDatabase {
     }
 }
 
-// why use an extension?
 extension SQLiteDatabase {
     func prepareStatement(sql: String) throws -> OpaquePointer? {
         var statement: OpaquePointer?
@@ -91,5 +90,29 @@ extension SQLiteDatabase {
             throw SQLiteError.Step(message: errorMessage)
         }
         print("\(table) table created")
+    }
+}
+
+// insertions
+extension SQLiteDatabase {
+    func insertSkill(skill: Skill) throws {
+        let insertSQL = "INSERT INTO Skill (Id, Title, Image, Video, Note) VALUES (?, ?, ?, ?, ?);"
+        let insertStatement = try prepareStatement(sql: insertSQL)
+        defer {
+            sqlite3_finalize(insertStatement)
+        }
+        guard
+            sqlite3_bind_int(insertStatement, 1, Int32(skill.id)) == SQLITE_OK &&
+            sqlite3_bind_text(insertStatement, 2, skill.title, -1, nil) == SQLITE_OK &&
+            sqlite3_bind_text(insertStatement, 3, skill.image, -1, nil) == SQLITE_OK &&
+            sqlite3_bind_text(insertStatement, 4, skill.video, -1, nil) == SQLITE_OK &&
+            sqlite3_bind_text(insertStatement, 5, skill.note, -1, nil) == SQLITE_OK
+            else {
+            throw SQLiteError.Bind(message: errorMessage)
+        }
+        guard sqlite3_step(insertStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        print("Successfully inserted row.")
     }
 }

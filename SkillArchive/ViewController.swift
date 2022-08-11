@@ -8,6 +8,7 @@
 import UIKit
 
 //global variables
+var db: SQLiteDatabase? = nil
 var skills = [Skill]()
 var editSkill: Int = -1         //change to use sender?
 
