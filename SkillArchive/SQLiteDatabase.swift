@@ -101,12 +101,16 @@ extension SQLiteDatabase {
         defer {
             sqlite3_finalize(insertStatement)
         }
+        let title = skill.title as NSString
+        let image = skill.image as NSString
+        let video = skill.video as NSString
+        let note = skill.note as NSString
         guard
             sqlite3_bind_int(insertStatement, 1, Int32(skill.id)) == SQLITE_OK &&
-            sqlite3_bind_text(insertStatement, 2, skill.title, -1, nil) == SQLITE_OK &&
-            sqlite3_bind_text(insertStatement, 3, skill.image, -1, nil) == SQLITE_OK &&
-            sqlite3_bind_text(insertStatement, 4, skill.video, -1, nil) == SQLITE_OK &&
-            sqlite3_bind_text(insertStatement, 5, skill.note, -1, nil) == SQLITE_OK
+                sqlite3_bind_text(insertStatement, 2, title.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 3, image.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 4, video.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 5, note.utf8String, -1, nil) == SQLITE_OK
             else {
             throw SQLiteError.Bind(message: errorMessage)
         }
@@ -114,5 +118,33 @@ extension SQLiteDatabase {
             throw SQLiteError.Step(message: errorMessage)
         }
         print("Successfully inserted row.")
+    }
+}
+
+extension SQLiteDatabase {
+    func skill(id: Int) -> Skill? {
+        let querySQL = "SELECT * FROM Skill WHERE Id = ?;"
+        guard let queryStatement = try? prepareStatement(sql: querySQL) else {
+            return nil
+        }
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        guard sqlite3_bind_int(queryStatement, 1, Int32(id)) == SQLITE_OK else {
+            return nil
+        }
+        guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+            return nil
+        }
+        guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+            print("Query result is nil")
+            return nil
+        }
+        let title = String(cString: queryResultCol1)
+        let image = String(cString: sqlite3_column_text(queryStatement, 2))
+        let note = String(cString: sqlite3_column_text(queryStatement, 3))
+        let video = String(cString: sqlite3_column_text(queryStatement, 2))
+        return Skill(id: id, title: title, image: image, note: note, video: video)
+        
     }
 }
