@@ -18,8 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Open database
         do {
-            db = try SQLiteDatabase.open(path: "")  // part2DbPath ?? ""
-            print("Successfully opened connection to database")
+            // creating path to database location - code from ---
+            if let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let dirPath = docDir.appendingPathComponent("SkillArchiveDB")
+                try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
+                let dbPath = dirPath.appendingPathComponent("skillarchive.sqlite3").path
+                
+                db = try SQLiteDatabase.open(path: dbPath)
+                print("Successfully opened connection to database")
+            
+            }
+        
             try db!.createTable(table: Skill.self)
             print("Successfully created table")
         } catch SQLiteError.OpenDatabase(_) {
