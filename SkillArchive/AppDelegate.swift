@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Open database
         do {
-            // creating path to database location - code from ---
+            // creating path to database location - code from https://blog.canopas.com/ios-persist-data-using-sqlite-swift-library-with-swiftui-example-c5baefc04334 
             if let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let dirPath = docDir.appendingPathComponent("SkillArchiveDB")
                 try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
