@@ -1,0 +1,2 @@
+# SkillArchive
+This is an in-progress app that will allow users to save skills (gymnastics, circus, skating, dance, etc.) with a title, cover image that will show on the skills screen, a video, and notes.  It will also allow users to tag skills and filter on the skills page to find the skills they are looking for.  Eventually, I would love to add a Routines feature that will allow users to link skills together to plan routines.
