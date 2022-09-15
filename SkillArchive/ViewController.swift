@@ -10,7 +10,7 @@ import UIKit
 //global variables
 var db: SQLiteDatabase? = nil
 var skills = [Skill]()
-var editSkill: Int = -1         //change to use sender?
+var skillID: Int? = nil        // used in NewSkillViewController
 
 
 class ViewController: UIViewController {

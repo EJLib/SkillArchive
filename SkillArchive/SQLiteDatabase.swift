@@ -6,7 +6,7 @@
 //
 
 /*
- All code from https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started
+ Most code from https://www.raywenderlich.com/6620276-sqlite-with-swift-tutorial-getting-started
  */
 
 import Foundation
@@ -70,12 +70,19 @@ extension SQLiteDatabase {
 // table creation
 protocol SQLTable {
     static var createStatement: String { get }
+    static var dropStatement: String { get }
 }
 
 extension Skill: SQLTable {
     static var createStatement: String {
         return """
-            CREATE TABLE Skill(Id INTEGER PRIMARY KEY,Title TEXT,Image TEXT,Video TEXT,Note TEXT);
+            CREATE TABLE Skills(Id INTEGER PRIMARY KEY,Title TEXT,Image TEXT,Video TEXT,Note TEXT);
+            """
+    }
+    // not from tutorial
+    static var dropStatement: String {
+        return """
+            DROP TABLE IF EXISTS Skills;
             """
     }
 }
@@ -93,10 +100,24 @@ extension SQLiteDatabase {
     }
 }
 
+// not from tutorial
+extension SQLiteDatabase {
+    func dropTable(table: SQLTable.Type) throws {
+        let dropTableStatement = try prepareStatement(sql: table.dropStatement)
+        defer {
+            sqlite3_finalize(dropTableStatement)
+        }
+        guard sqlite3_step(dropTableStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        print("\(table) table dropped")
+    }
+}
+
 // insertions
 extension SQLiteDatabase {
     func insertSkill(skill: Skill) throws {
-        let insertSQL = "INSERT INTO Skill (Id, Title, Image, Video, Note) VALUES (?, ?, ?, ?, ?);"
+        let insertSQL = "INSERT INTO Skill (Title, Image, Video, Note) VALUES (?, ?, ?, ?);"
         let insertStatement = try prepareStatement(sql: insertSQL)
         defer {
             sqlite3_finalize(insertStatement)
@@ -106,12 +127,11 @@ extension SQLiteDatabase {
         let video = skill.video as NSString
         let note = skill.note as NSString
         guard
-            sqlite3_bind_int(insertStatement, 1, Int32(skill.id)) == SQLITE_OK &&
-                sqlite3_bind_text(insertStatement, 2, title.utf8String, -1, nil) == SQLITE_OK &&
-                sqlite3_bind_text(insertStatement, 3, image.utf8String, -1, nil) == SQLITE_OK &&
-                sqlite3_bind_text(insertStatement, 4, video.utf8String, -1, nil) == SQLITE_OK &&
-                sqlite3_bind_text(insertStatement, 5, note.utf8String, -1, nil) == SQLITE_OK
-            else {
+                sqlite3_bind_text(insertStatement, 1, title.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 2, image.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 3, video.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(insertStatement, 4, note.utf8String, -1, nil) == SQLITE_OK
+        else {
             throw SQLiteError.Bind(message: errorMessage)
         }
         guard sqlite3_step(insertStatement) == SQLITE_DONE else {
@@ -144,7 +164,9 @@ extension SQLiteDatabase {
         let image = String(cString: sqlite3_column_text(queryStatement, 2))
         let note = String(cString: sqlite3_column_text(queryStatement, 3))
         let video = String(cString: sqlite3_column_text(queryStatement, 2))
-        return Skill(id: id, title: title, image: image, note: note, video: video)
+        return Skill( title: title, image: image, note: note, video: video)
         
     }
+
+        
 }

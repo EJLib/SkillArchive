@@ -28,12 +28,12 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         
         // if editSkill is -1, it is a new skill
         // this sets the fields to their existing values if editing existing skill
-        if editSkill != -1 {
-            let path = getDocumentsDirectory().appendingPathComponent(skills[editSkill].image)
+        if skillID != nil {
+            let path = getDocumentsDirectory().appendingPathComponent(skills[skillID!].image)
             doneButton.isEnabled = true
             coverImage.image = UIImage(contentsOfFile: path.path)
-            titleTextField.text = skills[editSkill].title
-            imageName = skills[editSkill].image
+            titleTextField.text = skills[skillID!].title
+            imageName = skills[skillID!].image
             //add videos and notes as I implement them
         }
         
@@ -76,19 +76,20 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
 
     @IBAction func createNewSkill() {
         // if creating a new skill, add to skills list
-        if editSkill == -1 {
-            let s = Skill(id: skills.count, title: titleTextField.text!, image: imageName, note: "", video: "")
-            skills.append(s)
+        if skillID == nil {
+            let newSkill = Skill(title: titleTextField.text!, image: imageName, note: "", video: "")
+            //skills.append(s)
             //insert new skill into database
-            do {try db!.insertSkill(skill: s)} catch {print("Insertion failed.")}
-            //printing to test
-            print(db!.skill(id: skills.count-1)!.title)
+            do {
+                try db!.insertSkill(skill: newSkill)} catch {
+                print("Insertion failed.")
+            }
         // if editing existing skills, make sure all fields are updated
         } else {
-            skills[editSkill].title = titleTextField.text!
-            skills[editSkill].image = imageName
+            skills[skillID!].title = titleTextField.text!
+            skills[skillID!].image = imageName
             //add videos and notes as I implement them
-            editSkill = -1
+            skillID = nil
         }
     }
     

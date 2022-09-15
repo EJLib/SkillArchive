@@ -36,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("other error")
         }
+        
+        // reset tables - comment out if persistance wanted
+        do {
+            try db!.dropTable(table: Skill.self)
+            print("Tables dropped")
+        } catch {
+            print("Tables dropped failed")
+        }
+        
+        
         return true
     }
 

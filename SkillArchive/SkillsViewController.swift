@@ -20,7 +20,7 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        editSkill = indexPath[1]
+        skillID = indexPath[1]
         performSegue(withIdentifier: "SkillsToNewSkill", sender: nil)
         //indexPath seems to be [0, 0], [0, 1], etc. but not sure
     }
@@ -38,6 +38,7 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
             fatalError("Unable to dequeue Skill.")
         }
         
+        // change to reference database
         let path = getDocumentsDirectory().appendingPathComponent(skills[currentSkillIndex].image)
         cell.skillImage.image = UIImage(contentsOfFile: path.path)
         cell.skillTitle.text = skills[currentSkillIndex].title
@@ -45,38 +46,4 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
         
         return cell
     }
-    
-    
-    /*
-    //might move to a create new skill entry screen
-    @IBAction func importNew() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-
-        let imageName = UUID().uuidString
-        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
-
-        if let jpegData = image.jpegData(compressionQuality: 0.8) {
-            try? jpegData.write(to: imagePath)
-        }
-        
-        let s = Skill(number: skills.count, title: "", image: imageName, note: "", video: "")
-        skills.append(s)
-            //set title at some point - opt?
-        
-        dismiss(animated: true)
-    }
-
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    */
-
 }
