@@ -28,9 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Successfully opened connection to database")
             
             }
-        
-            try db!.createTable(table: Skill.self)
-            print("Successfully created table")
         } catch SQLiteError.OpenDatabase(_) {
             print("OpenDatabase error")
         } catch {
@@ -38,13 +35,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // reset tables - comment out if persistance wanted
+        /*
         do {
             try db!.dropTable(table: Skill.self)
             print("Tables dropped")
         } catch {
             print("Tables dropped failed")
-        }
+        }*/
         
+        // open table
+        do {
+            try db!.createTable(table: Skill.self)
+            print("Successfully created table")
+        } catch {
+            print("Failed to create Skills table")
+        }
         
         return true
     }

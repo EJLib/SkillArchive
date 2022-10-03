@@ -57,7 +57,7 @@
 		3F76C4B12654443100D73430 /* SkillArchiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkillArchiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F76C4B52654443100D73430 /* SkillArchiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillArchiveUITests.swift; sourceTree = "<group>"; };
 		3F76C4B72654443100D73430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F76C4C92656E17400D73430 /* SkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewController.swift; sourceTree = "<group>"; };
+		3F76C4C92656E17400D73430 /* SkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		3F76C4DC2656E81E00D73430 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		3F76C4E4265836D900D73430 /* SkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
 		3F76C4EF265C122300D73430 /* NewSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSkillViewController.swift; sourceTree = "<group>"; };

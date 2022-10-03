@@ -11,11 +11,16 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
     
     // used in collectionView to iterate through skill images and titles
     var currentSkillIndex = 0
+    // set from database when this page is loaded
+    var skills: [Skill] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToNewSkill))
+        // load up skills with those stored in database
+        skills = (db?.getAllSkills())!
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToNewSkill))
         
     }
     
@@ -38,7 +43,7 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
             fatalError("Unable to dequeue Skill.")
         }
         
-        // change to reference database
+        // sets image and title
         let path = getDocumentsDirectory().appendingPathComponent(skills[currentSkillIndex].image)
         cell.skillImage.image = UIImage(contentsOfFile: path.path)
         cell.skillTitle.text = skills[currentSkillIndex].title

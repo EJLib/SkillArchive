@@ -9,7 +9,7 @@ import UIKit
 
 //global variables
 var db: SQLiteDatabase? = nil
-var skills = [Skill]()
+//var skills = [Skill]()
 var skillID: Int? = nil        // used in NewSkillViewController
 
 

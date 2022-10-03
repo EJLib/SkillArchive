@@ -29,11 +29,12 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         // if editSkill is -1, it is a new skill
         // this sets the fields to their existing values if editing existing skill
         if skillID != nil {
-            let path = getDocumentsDirectory().appendingPathComponent(skills[skillID!].image)
+            let editSkill = (db?.getOneSkill(id: skillID!))!
+            let path = getDocumentsDirectory().appendingPathComponent(editSkill.image)
             doneButton.isEnabled = true
             coverImage.image = UIImage(contentsOfFile: path.path)
-            titleTextField.text = skills[skillID!].title
-            imageName = skills[skillID!].image
+            titleTextField.text = editSkill.title
+            imageName = editSkill.image
             //add videos and notes as I implement them
         }
         
@@ -86,9 +87,10 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
             }
         // if editing existing skills, make sure all fields are updated
         } else {
+            /*
             skills[skillID!].title = titleTextField.text!
             skills[skillID!].image = imageName
-            //add videos and notes as I implement them
+            //add videos and notes as I implement them*/
             skillID = nil
         }
     }

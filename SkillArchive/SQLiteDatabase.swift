@@ -117,7 +117,7 @@ extension SQLiteDatabase {
 // insertions
 extension SQLiteDatabase {
     func insertSkill(skill: Skill) throws {
-        let insertSQL = "INSERT INTO Skill (Title, Image, Video, Note) VALUES (?, ?, ?, ?);"
+        let insertSQL = "INSERT INTO Skills (Title, Image, Video, Note) VALUES (?, ?, ?, ?);"
         let insertStatement = try prepareStatement(sql: insertSQL)
         defer {
             sqlite3_finalize(insertStatement)
@@ -142,8 +142,8 @@ extension SQLiteDatabase {
 }
 
 extension SQLiteDatabase {
-    func skill(id: Int) -> Skill? {
-        let querySQL = "SELECT * FROM Skill WHERE Id = ?;"
+    func getOneSkill(id: Int) -> Skill? {
+        let querySQL = "SELECT * FROM Skills WHERE Id = ?;"
         guard let queryStatement = try? prepareStatement(sql: querySQL) else {
             return nil
         }
@@ -163,10 +163,37 @@ extension SQLiteDatabase {
         let title = String(cString: queryResultCol1)
         let image = String(cString: sqlite3_column_text(queryStatement, 2))
         let note = String(cString: sqlite3_column_text(queryStatement, 3))
-        let video = String(cString: sqlite3_column_text(queryStatement, 2))
+        let video = String(cString: sqlite3_column_text(queryStatement, 4))
         return Skill( title: title, image: image, note: note, video: video)
         
     }
+}
 
-        
+// not from tutorial
+extension SQLiteDatabase {
+    func getAllSkills() -> [Skill]? {
+        let querySQL = "SELECT * FROM Skills;"
+        guard let queryStatement = try? prepareStatement(sql: querySQL) else {
+            return nil
+        }
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        var result: [Skill] = []
+        while true {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1)
+            else {
+                break
+            }
+            let title = String(cString: queryResultCol1)
+            let image = String(cString: sqlite3_column_text(queryStatement, 2))
+            let note = String(cString: sqlite3_column_text(queryStatement, 3))
+            let video = String(cString: sqlite3_column_text(queryStatement, 4))
+            result.append(Skill(title: title, image: image, note: note, video: video));
+        }
+        return result;
+    }
 }
