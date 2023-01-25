@@ -76,7 +76,7 @@ protocol SQLTable {
 extension Skill: SQLTable {
     static var createStatement: String {
         return """
-            CREATE TABLE Skills(Id INTEGER PRIMARY KEY,Title TEXT,Image TEXT,Video TEXT,Note TEXT);
+            CREATE TABLE IF NOT EXISTS Skills(Id INTEGER PRIMARY KEY,Title TEXT,Image TEXT,Video TEXT,Note TEXT);
             """
     }
     // not from tutorial
@@ -157,7 +157,6 @@ extension SQLiteDatabase {
             return nil
         }
         guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
-            print("Query result is nil")
             return nil
         }
         let title = String(cString: queryResultCol1)

@@ -46,9 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // open table
         do {
             try db!.createTable(table: Skill.self)
-            print("Successfully created table")
+            print("Successfully ran createTable")
         } catch {
-            print("Failed to create Skills table")
+            print("Failed to run createTable")
         }
         
         return true

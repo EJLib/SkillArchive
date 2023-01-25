@@ -25,7 +25,7 @@ class SkillsViewController: UICollectionViewController, UIImagePickerControllerD
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        skillID = indexPath[1]
+        skillID = indexPath[1]+1    // +1 because the database starts with Ids at 1 not 0
         performSegue(withIdentifier: "SkillsToNewSkill", sender: nil)
         //indexPath seems to be [0, 0], [0, 1], etc. but not sure
     }
