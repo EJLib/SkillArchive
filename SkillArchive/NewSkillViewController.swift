@@ -26,7 +26,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         
         titleTextField.delegate = self
         
-        // if editSkill is -1, it is a new skill
+        // if skillID is nil it's creating a new skill, otherwise editing
         // this sets the fields to their existing values if editing existing skill
         if skillID != nil {
             let editSkill = (db?.getOneSkill(id: skillID!))!
@@ -75,22 +75,23 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
         dismiss(animated: true)
     }
 
-    @IBAction func createNewSkill() {
+    @IBAction func doneButtonResponse() {
+        let finalSkill = Skill(title: titleTextField.text!, image: imageName, note: "", video: "")
         // if creating a new skill, add to skills list
         if skillID == nil {
-            let newSkill = Skill(title: titleTextField.text!, image: imageName, note: "", video: "")
-            //skills.append(s)
             //insert new skill into database
             do {
-                try db!.insertSkill(skill: newSkill)} catch {
+                try db!.insertSkill(skill: finalSkill)
+            } catch {
                 print("Insertion failed.")
             }
-        // if editing existing skills, make sure all fields are updated
+        // if editing an existing skill
         } else {
-            /*
-            skills[skillID!].title = titleTextField.text!
-            skills[skillID!].image = imageName
-            //add videos and notes as I implement them*/
+            do {
+                try db!.updateSkill(id: skillID!, skill: finalSkill)
+            } catch {
+                print("Update failed.")
+            }
             skillID = nil
         }
     }

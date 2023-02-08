@@ -141,6 +141,35 @@ extension SQLiteDatabase {
     }
 }
 
+// not from tutorial
+// updates
+extension SQLiteDatabase {
+    func updateSkill(id: Int, skill: Skill) throws {
+        let updateSQL = "UPDATE Skills Set Title=?, Image=?, Video=?, Note=? WHERE Id=?;"
+        let updateStatement = try prepareStatement(sql: updateSQL)
+        defer {
+            sqlite3_finalize(updateStatement)
+        }
+        let title = skill.title as NSString
+        let image = skill.image as NSString
+        let video = skill.video as NSString
+        let note = skill.note as NSString
+        guard
+                sqlite3_bind_text(updateStatement, 1, title.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(updateStatement, 2, image.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(updateStatement, 3, video.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_text(updateStatement, 4, note.utf8String, -1, nil) == SQLITE_OK &&
+                sqlite3_bind_int(updateStatement, 5, Int32(id)) == SQLITE_OK
+        else {
+            throw SQLiteError.Bind(message: errorMessage)
+        }
+        guard sqlite3_step(updateStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        print("Successfully updated row.")
+    }
+}
+
 extension SQLiteDatabase {
     func getOneSkill(id: Int) -> Skill? {
         let querySQL = "SELECT * FROM Skills WHERE Id = ?;"
@@ -167,6 +196,8 @@ extension SQLiteDatabase {
         
     }
 }
+
+
 
 // not from tutorial
 extension SQLiteDatabase {

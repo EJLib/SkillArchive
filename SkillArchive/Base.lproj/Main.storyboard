@@ -169,7 +169,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="createNewSkill" destination="hWa-tL-GgU" eventType="touchUpInside" id="HOX-9p-P3L"/>
+                                    <action selector="doneButtonResponse" destination="hWa-tL-GgU" eventType="touchUpInside" id="4CB-lO-8At"/>
                                     <segue destination="u3G-oF-9me" kind="presentation" id="005-lK-35d"/>
                                 </connections>
                             </button>

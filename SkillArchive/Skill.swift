@@ -8,15 +8,12 @@
 import UIKit
 
 class Skill: NSObject {
-    //var id: Int             //index of skills
     var title: String
     var image: String
     var note: String
-//opt
     var video: String
     
-    init(/*id: Int, */title: String, image: String, note: String, video: String) {
-        //self.id = id
+    init(title: String, image: String, note: String, video: String) {
         self.title = title
         self.image = image
         self.note = note
