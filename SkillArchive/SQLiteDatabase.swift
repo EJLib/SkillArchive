@@ -227,3 +227,21 @@ extension SQLiteDatabase {
         return result;
     }
 }
+
+// not from tutorial
+extension SQLiteDatabase {
+    func deleteSkill(id: Int) throws {
+        let deleteSQL = "DELETE FROM Skills WHERE Id = ?;"
+        let deleteStatement = try prepareStatement(sql: deleteSQL)
+        defer {
+            sqlite3_finalize(deleteStatement)
+        }
+        guard sqlite3_bind_int(deleteStatement, 1, Int32(id)) == SQLITE_OK else {
+            throw SQLiteError.Bind(message: errorMessage)
+        }
+        guard sqlite3_step(deleteStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        print("Successfully deleted row.")
+    }
+}

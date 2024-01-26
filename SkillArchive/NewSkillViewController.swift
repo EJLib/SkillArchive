@@ -20,6 +20,8 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet var coverImage: UIImageView!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var doneButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var deleteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
             let editSkill = (db?.getOneSkill(id: skillID!))!
             let path = getDocumentsDirectory().appendingPathComponent(editSkill.image)
             doneButton.isEnabled = true
+            deleteButton.isEnabled = true
             coverImage.image = UIImage(contentsOfFile: path.path)
             titleTextField.text = editSkill.title
             imageName = editSkill.image
@@ -94,6 +97,19 @@ class NewSkillViewController: UIViewController, UIImagePickerControllerDelegate 
             }
             skillID = nil
         }
+    }
+    
+    @IBAction func cancelButtonResponse() {
+        skillID = nil
+    }
+    
+    @IBAction func deleteButtonResponse() {
+        do {
+            try db!.deleteSkill(id: skillID!)
+        } catch {
+            print("Deletion failed.")
+        }
+        skillID = nil
     }
     
 }
